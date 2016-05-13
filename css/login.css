@@ -1,0 +1,71 @@
+body {
+    background-color: white;
+}
+
+#login{
+    width:100%;
+}
+ 
+h1 a{
+    background: url(../img/login/logo-pastille-webforlyon.svg) no-repeat !important;
+    background-size: contain !important;
+    background-position: center !important;
+    width: 325px !important;
+    height: 200px !important;
+}
+ 
+#backtoblog {
+    background-color: #5695A6;
+    box-shadow: 0 1px 3px #666;
+    left: 0;
+    margin: 0 !important;
+    padding: 10px !important;
+    position: fixed;
+    text-align: left;
+    text-shadow: 0 0 0 !important;
+    top: 0;
+    width: 100%;
+}
+ 
+.login #backtoblog a {
+    color: #FFFFFF !important;
+}
+
+.login form p{
+    display:block;
+    max-width:320px;
+    margin:0 auto !important;
+}
+
+.forgetmenot, .submit{
+    float:none !important;
+}
+
+#contact{
+    text-align:center;
+}
+
+#loginform{
+    background-color: #5695A6 !important;
+}
+
+.wp-core-ui .button-primary{
+    background-color:#C9BBA2 !important;
+    border:none !important;
+    text-shadow:none;
+    box-shadow:none;
+}
+
+.login label{
+    color:#FFFFFF;
+}
+
+.login #nav{
+    text-align:center;
+}
+
+.login #login_error, .login .message{
+    border-left: 4px solid #5695A6;
+    max-width:320px;
+    margin:0 auto;
+}

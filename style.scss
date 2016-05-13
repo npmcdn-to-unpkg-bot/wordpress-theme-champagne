@@ -1,0 +1,698 @@
+/////////////////////////// VARIABLES
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin transition($property, $duration, $easing) {
+	-webkit-transition: $property $easing $duration;
+	-moz-transition: $property $easing $duration;
+	transition: $property $easing $duration;
+}
+
+@mixin taille($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin scaleY($y){
+	-webkit-transform: scaleY($y);
+	-moz-transform: scaleY($y);
+	-ms-transform: scaleY($y);
+	-o-transform: scaleY($y);
+	transform: scaleY($y);
+}
+
+@mixin scaleX($x){
+	-webkit-transform: scaleX($x);
+	-moz-transform: scaleX($x);
+	-ms-transform: scaleX($x);
+	-o-transform: scaleX($x);
+	transform: scaleX($x);
+}
+
+@mixin transform-origin($origin){
+	-webkit-transform-origin: $origin;
+	-moz-transform-origin: $origin;
+	-ms-transform-origin: $origin;
+	-o-transform-origin: $origin;
+	transform-origin: $origin;
+}
+
+@mixin box-shadow($box1, $box2){
+    -webkit-box-shadow: $box1, $box2;
+    -moz-box-shadow: $box1, $box2;
+    box-shadow: $box1, $box2;
+}
+
+
+$rupture_small : 1004px;
+
+$blue: blue;
+$margin: 16px;
+
+$shadow-menu1: 0 2px 5px 0 rgba(0,0,0,0.16);
+$shadow-menu2: 0 2px 10px 0 rgba(0,0,0,0.12);
+
+$tablet:992px;
+$mobile:600px;
+
+$color1: #ee6e73;
+
+@keyframes swift-inY {
+  0%  {@include scaleY(0)}
+  100% {@include scaleY(1)}
+}
+@keyframes swift-inX {
+  0%  {@include scaleX(0)}
+  100% {@include scaleX(1)}
+}
+@keyframes swift-outY {
+  0% {@include scaleY(1)}
+  100%  {@include scaleY(0)}
+}
+@keyframes swift-outX {
+  0% {@include scaleX(1)}
+  100%  {@include scaleX(0)}
+}
+
+$color1:#D9CEB2 !important;
+$color2:#948C75 !important;
+$color3:#D5DED9 !important;
+$color4:#7A6A53 !important;
+$color5:#99B2B7 !important;
+$color6:#A8DBA8 !important;
+$color7:#f4f0e9 !important;
+
+.colorBg1{
+    background-color:$color1;
+}
+
+.colorBg2{
+    background-color:$color2;
+}
+
+.colorBg3{
+    background-color:$color3;
+}
+
+.colorBg4{
+    background-color:$color4;
+}
+
+.colorBg5{
+    background-color:$color5;
+}
+
+.colorBg6{
+    background-color:$color6;
+}
+
+.colorBg7{
+    background-color:$color7;
+}
+
+.colorTxt1{
+    color:$color1;
+}
+
+.colorTxt2{
+    color:$color2;
+}
+
+.colorTxt3{
+    color:$color3;
+}
+
+.colorTxt4{
+    color:$color4;
+}
+
+.colorTxt5{
+    color:$color5;
+}
+
+.colorTxt6{
+    color:$color6;
+}
+
+body{
+	display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color:$color7;
+}
+
+main {
+    flex: 1 0 auto;
+  }
+
+.content-navigation {
+    border-color: $blue;
+    color: darken($blue, 10%);
+}
+
+.border {
+    padding: $margin / 2;
+    margin: $margin / 2;
+    border-color: $blue;
+}
+
+.posFixe{
+    position:fixed !important;
+    z-index: 999;
+}
+
+.wrap{
+    position:relative;
+    width:100%;
+    max-width:1920px;
+    margin: 0 auto;
+}
+
+.loader {
+	position : fixed;
+	z-index: 9999;
+	background : url('icon-loader.gif') 50% 50% no-repeat;
+	top : 0px;
+	left : 0px;
+	height : 100%;
+	width : 100%;
+	cursor : wait;
+}
+
+// Materialize ne met pas height auto sur les img des carte ce qui les déforme
+.card .card-image img{
+    height:auto;
+}
+
+
+// Grille masonry
+.grid-sizer { 
+    width: 29%;
+}
+.grid-item { 
+    width: 29%;
+	margin-left: 2%;
+	@media screen and (max-width: $rupture_small) {
+		width:48%;
+	}
+}
+
+.palette{
+    width:150px;
+    height:150px;
+    margin:20px;
+    float:left;
+}
+
+//////////////////////////// LOADER
+
+#chargement {
+    font-size: 4em;
+    text-align: center;
+    position: absolute;
+    z-index:10000;
+    background-color:#f4f0e9;
+    left: 0;
+    top: 0;
+    right:0;
+    bottom:0;
+}
+#chargement-infos {
+    text-align:right;
+    white-space: nowrap;
+    display: block;
+    border-bottom:4px solid #000;
+    width: 0%;
+}
+#container {
+    visibility: hidden;
+}
+
+//////////////////////////// INTRO PAGE D'ACCUEIL
+
+.intro_accueil{
+    background-size:cover;
+    position:relative;
+    > div{
+        margin-left:auto;
+        margin-right:auto;
+        width:80%;
+        margin-left: 10%;
+    }
+    h2{
+        width:100%;
+        display: block;
+        text-align:center;
+        margin: 0 auto;
+        line-height:70px;
+        br{
+            margin-top: 50px;
+        }
+    }
+    
+    p{
+        display:block;
+        text-align:center;
+        margin-top: 25px;
+        color:white;
+        font-size:25pt;
+        a{
+            padding:0 15px;
+            font-size:2.5em;
+            font-family: 'Tangerine', cursive;
+        }
+    }
+}
+
+//////////////////////////// EFFET PARALLAX ACCUEIL
+
+
+.widgetParallax{
+    .parallax-container{
+        height:400px;
+        .container > div{
+            padding:20px 100px 40px 40px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d9ceb2+0,d9ceb2+100&0.7+17,0+100 */
+            background: -moz-linear-gradient(left,  rgba(217,206,178,0.7) 0%, rgba(217,206,178,0.7) 17%, rgba(217,206,178,0) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left,  rgba(217,206,178,0.7) 0%,rgba(217,206,178,0.7) 17%,rgba(217,206,178,0) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right,  rgba(217,206,178,0.7) 0%,rgba(217,206,178,0.7) 17%,rgba(217,206,178,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3d9ceb2', endColorstr='#00d9ceb2',GradientType=1 ); /* IE6-9 */
+        }
+    }
+    .container{
+        height:400px;
+        h3{
+            margin-bottom:0;
+        }
+        p{
+            font-size:2em;
+            margin-top:0;
+            font-weight:300;
+        }
+    }
+}
+
+.card-image{
+	overflow:hidden;
+}
+
+.card{
+	img{
+		@include transition(all, 200ms,ease-in-out);
+	}
+	&:hover img{
+		transform: scale(1.1);
+	}
+}
+
+.accueil{
+    .postAccueil{
+        margin-bottom: 40px;
+        .actuHome {
+            img{
+                padding:0 !important;
+                height:auto;
+                margin: 0 20px 20px 0;
+            }
+            h3{
+                font-size:2em;
+                margin:0;
+            }
+            .btn{
+                margin:0 auto;
+            }
+        }
+    }
+}
+
+.widgetPresentationAccueil{
+    padding:60px 0;
+    color:white;
+    text-align:center;
+    h3{
+        font-family:'Tangerine', cursive;
+        font-size:5em;
+        margin:0;
+    }
+}
+
+
+
+//////////////////////////// MENU BANNIERE
+
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i{
+    height:100px;
+    line-height: 100px;
+}
+
+.wrapMenu{
+    position:relative;
+    width:100%;
+    max-width:1880px;
+    margin: 0 auto;
+    padding:0 20px; 
+}
+
+#menu-banniere{
+	position:absolute;
+    z-index:999;
+	top:0; left:0;
+    li{
+        position:relative;
+        &:hover .sousmenu-0{
+            @media screen and (min-width: $rupture_small) {
+                animation: swift-inY 0.12s cubic-bezier(0.55, 0.085, 0.68, 0.53) 1 forwards;
+            }
+        }
+        &:hover .sousmenu-0 > li > a{
+            opacity:1;
+        }
+    }
+    .sousmenu-0{
+        @include scaleY(0);
+        position:absolute;
+        top:100%; 
+        right:0;
+        animation: swift-outY 0.09s cubic-bezier(0.55, 0.085, 0.68, 0.53) 1 forwards;
+        @include box-shadow($shadow-menu1, $shadow-menu2);
+        @include transform-origin(top);
+        @media screen and (max-width: $rupture_small) {
+            @include scaleY(1);
+            position:static;
+        }
+        > li{
+            background: #948C75;
+            width:170px;
+            position:relative;
+            @media screen and (max-width: $rupture_small) {
+                background:none;
+            }
+            > a{
+                opacity:0;
+                padding:10px 15px;
+                text-align: right;
+                @include transition(all, 0.25s, ease-in-out);
+            }
+            &:hover .sousmenu-1{
+                @media screen and (min-width: $rupture_small) {
+                    animation: swift-inX 0.12s cubic-bezier(0.55, 0.085, 0.68, 0.53) 1 forwards;
+                } 
+            }
+            &:hover .sousmenu-1 > li > a{
+                opacity:1;
+            }
+            .sousmenu-1{
+                @include scaleX(0);
+                @include transform-origin(right);
+                position:absolute;
+                right:100%;
+                top:0;
+                animation: swift-outX 0.09s cubic-bezier(0.55, 0.085, 0.68, 0.53) 1 forwards;
+                @include box-shadow($shadow-menu1, $shadow-menu2);
+                @media screen and (max-width: $rupture_small) {
+                    position:static;
+                }
+                > li{
+                    background: #948C75;
+                    width:230px;
+                    position:relative;
+                    @media screen and (max-width: $rupture_small) {
+                        background:none;
+                    }
+                    > a{
+                        opacity:0;
+                        padding:10px 15px;
+                        text-align: right;
+                        @include transition(all, 0.25s, ease-in-out);
+                    }
+                }
+            }
+        }
+    }
+    
+    ul > li > ul *{
+        line-height:30px;
+    }
+}
+
+#remplace-nav{
+	width:100%;
+	position:relative;
+}
+
+.new-remplace-nav{
+	background:none;
+}
+
+////////////////////////// PRESENTATION CHAMPAGNES
+//        .container > div{
+//            padding:20px 50px 40px 40px;
+//            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d9ceb2+0,d9ceb2+100&0.7+17,0+100 */
+//            background: -moz-linear-gradient(left,  rgba(217,206,178,0.7) 0%, rgba(217,206,178,0.7) 17%, rgba(217,206,178,0) 100%); /* FF3.6-15 */
+//            background: -webkit-linear-gradient(left,  rgba(217,206,178,0.7) 0%,rgba(217,206,178,0.7) 17%,rgba(217,206,178,0) 100%); /* Chrome10-25,Safari5.1-6 */
+//            background: linear-gradient(to right,  rgba(217,206,178,0.7) 0%,rgba(217,206,178,0.7) 17%,rgba(217,206,178,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+//            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3d9ceb2', endColorstr='#00d9ceb2',GradientType=1 ); /* IE6-9 */
+//        }
+
+.presentation-champ{
+    display:block !important;
+    .parallax-container{
+        height:500px;
+        .container{
+            position:relative;
+            padding:20px;
+            height:500px;
+            .blocTxt{
+                height:100%;
+                background: rgba(255,255,255, 0.7);
+                text-align: center;
+            }
+            .alignGauche{
+                margin-left: 0;
+                width: 40%;
+                @media screen and (max-width: $tablet){
+                    right:40px !important;
+                    left:40px !important;
+                    width:auto;
+                }
+            }
+            .alignDroite{
+                margin-left: 60%;
+                width: 40%;
+                @media screen and (max-width: $tablet){
+                    right:40px !important;
+                    left:40px !important;
+                    width:auto;
+                }
+            }
+        }
+        .parallax img{
+            height:auto;
+        }
+    }
+} 
+
+
+////////////////////////// BOUCLE CATEGORY
+
+.navigation{
+    text-align: center;
+}
+
+.navigation li a,
+.navigation li a:hover,
+.navigation li.active a,
+.navigation li.disabled {
+	color: #fff;
+	text-decoration:none;
+}
+
+.navigation li {
+	display: inline;
+}
+
+.navigation li a,
+.navigation li a:hover,
+.navigation li.active a,
+.navigation li.disabled {
+    @include transition(linear, 200ms, all);
+	background-color: $color1;
+	border-radius: 2px;
+	cursor: pointer;
+	padding: 12px;
+	padding: 0.75rem;
+}
+
+.navigation li a:hover,
+.navigation li.active a {
+	background-color: $color2;
+}
+
+
+
+
+
+
+////////////////////////// PAGES STANDARD
+
+.page{
+    .bandeauTitre{
+        padding:20px 0 20px 0;
+        h1{
+            font-family: 'Tangerine', cursive;
+            font-size:8em;
+            color:white;
+        }  
+    }
+    .pageContent{
+        padding:50px 0;
+    }    
+}
+
+
+
+////////////////////////// SINGLE CHAMPAGNES
+
+
+.singleChampagne{
+	h1{
+		font-family: 'Tangerine', cursive;
+		font-size:6em;
+	}
+	.containerSingleChampTxt{
+		overflow:hidden;
+		padding-top: 100px;
+		.champBouteille{
+			float:left;
+			min-width:150px;
+			margin-left: 5%;;
+			width:20%;
+			img{
+				width:100%;
+				height:auto;
+			}
+		}
+		.champContent{
+			padding:60px;
+			background:rgba(217,206,178,0.9);
+			float:left;
+			margin-left: 10%;
+			width:60%;
+		}
+	}
+    .secondText{
+        padding:60px;
+    }
+}
+
+////////////////////////// CONTACT
+
+.contact{
+    input[type=text]:focus:not([readonly]),
+    input[type=email]:focus:not([readonly]),
+    input[type=time]:focus:not([readonly]),
+    input[type=datetime-local]:focus:not([readonly]),
+    input[type=tel]:focus:not([readonly]),
+    input[type=search]:focus:not([readonly]),
+    input[type=password]:focus:not([readonly]),
+    input[type=number]:focus:not([readonly]),
+    textarea.materialize-textarea:focus:not([readonly])
+    {
+        border-bottom: 1px solid $color2;
+        box-shadow: 0 1px 0 0 $color2;
+    }
+    input[type=text],
+    input[type=email],
+    input[type=time],
+    input[type=datetime-local],
+    input[type=tel]:focus:not([readonly]),
+    input[type=search]:focus:not([readonly]),
+    input[type=password]:focus:not([readonly]),
+    input[type=number]:focus:not([readonly]),
+    textarea.materialize-textarea:focus:not([readonly])
+    {
+        border-bottom: 1px solid $color2;
+        box-shadow: 0 1px 0 0 $color2;
+    }
+    .postContent{
+        padding-top: 10px;
+    }
+    .envoyer{
+        text-decoration: none;
+        color: #fff;
+        background-color: $color2;
+        text-align: center;
+        letter-spacing: .5px;
+        transition: .2s ease-out;
+        cursor: pointer;
+        border: none;
+        border-radius: 2px;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        outline: 0;
+        padding: 0 2rem;
+        text-transform: uppercase;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+        -webkit-appearance: button;
+    }
+}
+
+
+#carte{
+     width:100%; height:400px;
+}
+
+////////////////////////// FOOTER
+
+footer{
+    *{
+        color:white;
+    }
+    a{
+        color:white;
+    }
+    .sub-menu{
+        padding:0 15px;
+    }
+    div > ul{
+        padding:0;
+    }
+    div > ul > li > a{
+        font-size:1em;        
+    }
+    i{
+        color:white;
+        @include transition(all, 200ms, linear);
+        &:hover{
+            color:#7A6A53;
+        }
+    }
+    .footer-copyright{
+        overflow:visible !important;
+		height:auto !important;
+        ul{
+            margin:0;
+			padding:0;
+            li{
+                display:inline-block;
+                margin-left: 13%;
+                width:5%
+            }
+        }
+    }
+	.zoneLogoFooter{
+		text-align:center;
+		img{
+			max-width:200px;
+			width:100%
+		}
+	}
+}
