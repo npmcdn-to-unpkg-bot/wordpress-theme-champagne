@@ -1,6 +1,14 @@
 <?php
 
 
+//////////////// RETOUR A JQUERY 1.11.3
+
+if (!is_admin()) {
+        wp_deregister_script('jquery');
+        wp_register_script('jquery', ("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"), false, '1.11.3');
+        wp_enqueue_script('jquery');
+}
+
 //////////////// IMPORTATION SCRIPT.JS
 
 function loader_js(){
